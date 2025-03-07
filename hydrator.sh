@@ -8,5 +8,4 @@ jq -cn --arg sha $(git rev-parse HEAD) '{drySha: $sha}' > hydrator.metadata
 git add file.yaml hydrator.metadata
 git commit -m "Hydrate from main" && git push --force
 
-
 git checkout main

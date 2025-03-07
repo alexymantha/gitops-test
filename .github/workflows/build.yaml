@@ -14,6 +14,6 @@ jobs:
       - run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git remote origin set-url https://$GITHUB_TOKEN@github.com/alexymantha/gitops-test.git
+          git remote set-url origin https://$GITHUB_TOKEN@github.com/alexymantha/gitops-test.git
       - run: ./hydrator.sh
 
