@@ -1,2 +1,2 @@
-env: "%ENVIRONMENT%"
+env: "dev"
 field: 123
