@@ -1,3 +1,4 @@
 helm:
   valueFiles:
     - values-production.yaml
+    - values-custom.yaml
