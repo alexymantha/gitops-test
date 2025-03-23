@@ -7,6 +7,6 @@ To hydrate the manifests in this repository, run the following commands:
 
 git clone https://github.com/alexymantha/gitops-test
 # cd into the cloned directory
-git checkout bdbcafb93263c1ae22f35036325ed02d7b8d5415
+git checkout 7651b76d4b5f051a811dbfc6e45e117eea338f9a
 helm template . --name-template guestbook --include-crds
 ```
