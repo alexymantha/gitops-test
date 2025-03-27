@@ -1,0 +1,63 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    argocd.argoproj.io/tracking-id: guestbook.dev:/Service:/guestbook.dev-helm-guestbook
+  labels:
+    app: helm-guestbook
+    chart: helm-guestbook-0.1.0
+    heritage: Helm
+    release: guestbook.dev
+  name: guestbook.dev-helm-guestbook
+spec:
+  ports:
+    - name: http
+      port: 81
+      protocol: TCP
+      targetPort: http
+  selector:
+    app: helm-guestbook
+    release: guestbook.dev
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    argocd.argoproj.io/tracking-id: guestbook.dev:apps/Deployment:/guestbook.dev-helm-guestbook
+  labels:
+    app: helm-guestbook
+    chart: helm-guestbook-0.1.0
+    heritage: Helm
+    release: guestbook.dev
+  name: guestbook.dev-helm-guestbook
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: helm-guestbook
+      release: guestbook.dev
+  template:
+    metadata:
+      labels:
+        app: helm-guestbook
+        release: guestbook.dev
+    spec:
+      containers:
+        - image: gcr.io/heptio-images/ks-guestbook-demo:0.1
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          name: helm-guestbook
+          ports:
+            - containerPort: 80
+              name: http
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources: {}

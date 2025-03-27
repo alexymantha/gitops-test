@@ -1,0 +1,7 @@
+{
+  "repoURL": "https://github.com/alexymantha/gitops-test",
+  "drySha": "27a8cd581c88d646bc238275079ef10df46044ae",
+  "commands": [
+    "helm template . --name-template guestbook.dev --values ./helm-guestbook/values-production.yaml --include-crds"
+  ]
+}
